@@ -16,13 +16,17 @@ exports.postProject = function(req, res) {
 };
 // Create endpoint /api/projects for GET
 exports.getProjects = function(req, res) {
-    Project.find(function(err, projects) {
+  //TODO provisory response to endpoint
+  res.writeHead(200, {'Content-Type': 'text/plain'})
+  var txt = "there will soon be some projects here";
+  res.end(txt);
+  /*  Project.find(function(err, projects) {
         if (err) {
             res.status(400).send(err);
             return;
         }
         res.json(projects);
-    });
+    });*/
 };
 // Create endpoint /api/projects/:project_id for GET
 exports.getProject= function(req, res) {
