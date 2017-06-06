@@ -6,6 +6,7 @@ var app = require('./app');
 */
 //Express
 app.listen(Config.app.port);
+console.log("Server is listening on port %s", Config.app.port);
 //HTTP version
 /*var http = require('http');
 var server = http.createServer(function(req, res) {
