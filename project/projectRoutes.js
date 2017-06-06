@@ -17,7 +17,7 @@ function projectRoutes(passport) {
         .post(projectController.postProject)
         .get(projectController.getProjects);
 
-    router.route('/:movie_id')
+    router.route('/:project_id')
         .get(projectController.getProject)
         .put(projectController.putProject)
         .delete(projectController.deleteProject);

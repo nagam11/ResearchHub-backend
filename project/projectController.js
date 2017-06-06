@@ -26,7 +26,7 @@ exports.getProjects = function(req, res) {
 };
 // Create endpoint /api/projects/:project_id for GET
 exports.getProject= function(req, res) {
-    // Use the Movie model to find a specific movie
+    // Use the Project model to find a specific movie
     Project.findById(req.params.project_id, function(err, project) {
         if (err) {
             res.status(400).send(err)
@@ -38,7 +38,7 @@ exports.getProject= function(req, res) {
 };
 // Create endpoint /api/projects/:project_id for PUT
 exports.putProject = function(req, res) {
-    // Use the Movie model to find a specific movie and update it
+    // Use the Project model to find a specific movie and update it
     Project.findByIdAndUpdate(
         req.params.project_id,
         req.body,

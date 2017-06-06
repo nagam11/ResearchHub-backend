@@ -1,4 +1,6 @@
 var Config = require('./config/config.js');
+//to show a welcome screen
+var http = require('http');
 /**
  * MongoDB connection
  */
@@ -6,7 +8,12 @@ var Config = require('./config/config.js');
 var uri = Config.db.uri;
 MongoClient.connect(uri, function(err, db) {
    if (err) {console.error(err); }
+
    console.log("Connected to ResearchHub Mongo DB");
+   db.collection("projects").find({}).toArray(function(err, result) {
+    if (err) throw err;
+    console.log(result);
+  });
 //   may be needed later ;
 //db.close();
 });
