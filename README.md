@@ -21,10 +21,6 @@ cd path/to/workspace/ResearchHub-backend
 npm install
 ```
 
-**set up environment configuration**
-
-DO NOT CHECK config.js. Database credentials are stored there.
-
 ## running
 
 start the web server
