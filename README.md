@@ -1,6 +1,7 @@
 # ResearchHub backend application 
 
-ResearchHub frontend can be found [here](https://github.com/nagam11/ResearchHub-frontend)
+ResearchHub frontend can be found [here](https://github.com/nagam11/ResearchHub-frontend).
+
 Deployment on Heroku can be found [here](https://researchhub-server.herokuapp.com/) 
 (HEROKU- still to be fixed)
 
