@@ -3,7 +3,9 @@
 ResearchHub frontend can be found [here](https://github.com/nagam11/ResearchHub-frontend).
 
 Deployment on Heroku can be found [here](https://researchhub-server.herokuapp.com/) 
-(HEROKU- still to be fixed)
+(HEROKU- still on development)
+
+MongoDB database is hosted in MongoDB Atlas: researchhub-shard-00-00-fejf5.mongodb.net
 
 ## Technologies
 
