@@ -4,19 +4,32 @@ var http = require('http');
 /**
  * MongoDB connection
  */
- var MongoClient = require('mongodb').MongoClient;
-var uri = Config.db.uri;
-MongoClient.connect(uri, function(err, db) {
-   if (err) {console.error(err); }
+// var MongoClient = require('mongodb').MongoClient;
+//var uri = Config.db.uri;
+//MongoClient.connect(uri, function(err, db) {
+//   if (err) {console.error(err); }
 
-   console.log("Connected to ResearchHub Mongo DB");
-   db.collection("projects").find({}).toArray(function(err, result) {
-    if (err) throw err;
-    console.log(result);
-  });
+ //  console.log("Connected to ResearchHub Mongo DB");
+ //  db.collection("projects").find({}).toArray(function(err, result) {
+ //   if (err) throw err;
+ //   console.log(result);
+ // });
 //   may be needed later ;
 //db.close();
+
+//});
+
+/**
+ * db connect
+ */
+var mongoose = require('mongoose');
+mongoose.connect([Config.db.host, '/', Config.db.name].join(''),{
+    //eventually it's a good idea to make this secure
+    user: Config.db.user,
+    pass: Config.db.pass
 });
+
+
 /**
  * create application
  */
@@ -43,6 +56,16 @@ jwtConfig(passport);
  */
 var userRoutes = require("./user/userRoutes");
 var projectRoutes = require("./project/projectRoutes");
+var projectTypesRoutes = require("./ProjectType/projectTypeRoutes");
+var educationLevels = require("./EducationLevel/educationLevelRoutes");
+var languages = require("./Language/languageRoutes");
+var chairs = require("./Chair/chairRoutes");
+var facultyRoutes = require("./Faculty/facultyRoutes");
 app.use('/api/projects', projectRoutes(passport));
+app.use('/api/projecttypes',projectTypesRoutes(passport));
 app.use('/api/user', userRoutes(passport));
+app.use('/api/educationlevels',educationLevels(passport));
+app.use('/api/languages',languages(passport));
+app.use('/api/chairs',chairs(passport)); // do we need it?
+app.use('/api/faculties',facultyRoutes(passport));
 module.exports = app;

@@ -7,6 +7,26 @@ var userSchema = mongoose.Schema({
         required: true,
         unique: true
     },
+    firstname: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    lastname: {
+        type: String,
+        required: true,
+        unique: false
+    },
+    birthday: {
+        type: Date,
+        required: true,
+        unique: false
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
     password: {
         type: String,
         required: true
@@ -41,7 +61,7 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
 };
 
 
-var User = mongoose.model('User', userSchema);
+var User = mongoose.model('users', userSchema);
 
 module.exports = User;
 
