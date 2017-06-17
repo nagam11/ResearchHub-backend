@@ -8,7 +8,8 @@ var faculty   = new mongoose.Schema({
     _id: Number,
     name: {
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     chairs:[{
         type: mongoose.Schema.Types.ObjectId,
