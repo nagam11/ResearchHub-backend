@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 // Define our movie schema
 var language   = new mongoose.Schema({
     _id: Number,
-    language: String
+    language: {type:String,required:true,unique:true}
 });
 
 // Export the Mongoose model

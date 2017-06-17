@@ -7,21 +7,36 @@ var project   = new mongoose.Schema({
     title: String,
     projetType : {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'ProjectType',
+        ref: 'projecttypes',
         required:true
     },
-    requeredLevel: {type: mongoose.Schema.Types.ObjectId,
-        ref: 'EducationLevel'
+    requeredLevel: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'educationlevels'
+    },
+    chair:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'chairs'
     },
     language: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Language'
+        ref: 'languages'
     },
     description: String,
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }
+        ref: 'user'
+    },
+    requeredSkills: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'skills'
+        }],
+    ratings: [{
+        _id : Number,
+        company: String,
+        interestedFields:String,
+        overLapMessage: String
+    }]
 });
 
 // Export the Mongoose model

@@ -2,7 +2,7 @@
  * Created by Devgen on 16.06.2017.
  */
 //var mongoose = require('mongoose');
-var chair = require('./chairSchema');
+var Chair = require('./chairSchema');
 //var projectType = mongoose.model('ProjectType');
 
 var sendJSONresponse = function(res, status, content) {
@@ -10,11 +10,10 @@ var sendJSONresponse = function(res, status, content) {
     res.json(content);
 };
 
-
 exports.getChairs = function(req,res){
 
-    console.log('Finding projecttypes ...');
-    chair.find(function(err, chairs) {
+    console.log('Finding chair ...');
+    Chair.find(function(err, chairs) {
         if (err) {
             console.log(err);
             sendJSONresponse(res, 404, err);
@@ -29,4 +28,16 @@ exports.getChairs = function(req,res){
         sendJSONresponse(res, 200, chairs);
     });
 
+};
+exports.getChair = function(req, res) {
+    // Use the Movie model to find a specific movie
+    console.log('Finding one chair ...:'+chair_id);
+    Chair.findById(req.params.chair_id, function(err, chair) {
+        if (err) {
+            res.status(500).send(err)
+            return;
+        };
+        console.log(chair);
+        sendJSONresponse(res, 200, chair);
+    });
 };

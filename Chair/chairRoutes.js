@@ -17,6 +17,7 @@ function chairRoutes(passport) {
     router.use(mw.unless({method: ['GET', 'OPTIONS']}));
 
     router.route('/').get(chairController.getChairs);
+    router.route('/:chair_id').get(chairController.getChair);
 
     return router;
 }

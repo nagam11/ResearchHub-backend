@@ -1,5 +1,12 @@
 // importing Project model
 var Project = require('./projectSchema');
+var sendJSONresponse = function(res, status, content) {
+    res.status(status);
+    res.json(content);
+};
+
+
+
 exports.postProject = function(req, res) {
     var project = new Project(req.body);
     //do not allow user to fake identity. The user who postet the movie must be the same user that is logged in
@@ -16,16 +23,15 @@ exports.postProject = function(req, res) {
 };
 // Create endpoint /api/projects for GET
 exports.getProjects = function(req, res) {
-  //TODO provisory response to endpoint
- // res.writeHead(200, {'Content-Type': 'text/plain'})
-  //var txt = "there will soon be some projects here";
-  //res.end(txt);
+    console.log('Finding projects ...');
     Project.find(function(err, projects) {
         if (err) {
             res.status(400).send(err);
             return;
         }
-        res.json(projects);
+        console.log(projects);
+        //res.json(projects);
+        sendJSONresponse(res, 200, projects);
     });
 };
 // Create endpoint /api/projects/:project_id for GET

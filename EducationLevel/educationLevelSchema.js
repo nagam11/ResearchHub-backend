@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 // Define our EducationLevel schema
 var educationLevel   = new mongoose.Schema({
     _id: Number,
-    level: String
+    level: {type:String,unique:true,required:true}
 });
 
 // Export the Mongoose model

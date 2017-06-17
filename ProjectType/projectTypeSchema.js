@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 // Define our movie schema
 var projecttype   = new mongoose.Schema({
     _id: Number,
-    protjectType: String
+    protjectType: {type: String, unique:true,required:true}
 });
 
 // Export the Mongoose model
