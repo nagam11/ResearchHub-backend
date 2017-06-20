@@ -8,17 +8,22 @@ var userSchema = require('../user/userSchema');
 var options = {discriminatorKey: 'kind'};
 var academic = userSchema.discriminator('academic',
     new mongoose.Schema({
-    _id: Number,
+
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required:true
     },
+    projects:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users'
+    }],
     chair:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'chair',
         required:true
     }
+
 },options));
 
 // Export the Mongoose model

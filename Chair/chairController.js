@@ -88,9 +88,9 @@ exports.createChair = function (req,res) {
                 }); */
 
 
-            console.log('found : '+faculty);
-            faculty.chairs.push(content._id);
-            faculty.save(sendJSONresponse(res, status, faculty));
+            //console.log('found : '+faculty);
+            //faculty.chairs.push(content._id);
+            //faculty.save(sendJSONresponse(res, status, faculty));
             sendJSONresponse(res, 200, content);
         //});
     });

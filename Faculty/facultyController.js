@@ -15,7 +15,7 @@ var sendJSONresponse = function(res, status, content) {
 exports.getFaculties = function(req,res){
 
     console.log('Finding faculties ...');
-    Faculty.find(function(err, faculties) {
+    Faculty.find().populate('chairs', 'name').exec(function(err, faculties) {
         if (err) {
             console.log(err);
             sendJSONresponse(res, 404, err);

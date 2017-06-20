@@ -11,10 +11,7 @@ var faculty   = new mongoose.Schema({
         required:true,
         unique:true
     },
-    chairs:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'chair'
-    }]
+    chairs:[{ type: mongoose.Schema.Types.ObjectId, ref: 'chairs'}]
 });
 
 // Export the Mongoose model
