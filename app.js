@@ -62,6 +62,7 @@ var languages = require("./Language/languageRoutes");
 var chairs = require("./Chair/chairRoutes");
 var facultyRoutes = require("./Faculty/facultyRoutes");
 var skillRoutes = require("./skills/skillRoutes");
+var academicsRoutes = require("./Academic/academicRoutes");
 app.use('/api/projects', projectRoutes(passport));
 app.use('/api/projecttypes',projectTypesRoutes(passport));
 app.use('/api/user', userRoutes(passport));
@@ -69,5 +70,6 @@ app.use('/api/educationlevels',educationLevels(passport));
 app.use('/api/languages',languages(passport));
 app.use('/api/chairs',chairs(passport)); // do we need it?
 app.use('/api/faculties',facultyRoutes(passport));
+app.use('/api/academics',facultyRoutes(passport));
 app.use('/api/skills',skillRoutes(passport));
 module.exports = app;

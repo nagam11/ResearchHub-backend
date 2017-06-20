@@ -37,8 +37,7 @@ exports.getFacultyByid = function(req,res){
 
     if (req.params && req.params.fucultyid) {
         console.log('Finding faculties ...'+req.params.fucultyid);
-        Faculty
-            .findById(req.params.fucultyid)
+        Faculty.findById().find().populate('chairs', 'name').exec(req.params.fucultyid)
             .exec(function(err, resfaculty) {
                 /*if (!resfaculty) {
                     sendJSONresponse(res, 404, {

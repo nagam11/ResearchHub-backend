@@ -1,25 +1,28 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
+
+var options = {discriminatorKey: 'kind'};
+
 var userSchema = mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        // required: true,
         unique: true
     },
     firstname: {
         type: String,
-        required: true,
+        // required: true,
         unique: false
     },
     lastname: {
         type: String,
-        required: true,
+        // required: true,
         unique: false
     },
     birthday: {
         type: Date,
-        required: true,
+        // required: true,
         unique: false
     },
     email: {
@@ -31,7 +34,7 @@ var userSchema = mongoose.Schema({
         type: String,
         required: true
     }
-});
+},options);
 
 userSchema.pre('save', function(next) {
     var user = this;
