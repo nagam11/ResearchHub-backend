@@ -3,36 +3,42 @@ var mongoose = require('mongoose');
 
 // Define our Project schema
 var project   = new mongoose.Schema({
-    _id: Number,
+    //_id: Number,
+
+    createdOn : {type: Date,  "default": Date.now  },
     title: String,
-    projetType : {
+    _projetType : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'projecttypes',
-        required:true
+      //  required:true
     },
-    requeredLevel: {
+    _requeredLevel: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'educationlevels'
     },
-    chair:{
+    _chair:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'chairs'
+        ref:'chairs',
+        required:true
     },
-    language: {
+    _language: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'languages'
     },
     description: String,
-    user: {
+    _advisor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user'
     },
-    requeredSkills: [{
+    _superadvisor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+    },
+    _requeredSkills: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'skills'
         }],
     ratings: [{
-        _id : Number,
         company: String,
         interestedFields:String,
         overLapMessage: String

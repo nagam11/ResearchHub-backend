@@ -14,10 +14,15 @@ function chairRoutes(passport) {
     mw.unless = unless;
 
     //middleware
-    router.use(mw.unless({method: ['GET', 'OPTIONS']}));
+    router.use(mw.unless({method: ['GET','POST','PUT', 'OPTIONS']}));
 
-    router.route('/').get(chairController.getChairs);
+    router.route('/').get(chairController.getChairs).post(chairController.createChair);
     router.route('/:chair_id').get(chairController.getChair);
+
+  /*  router.route('/:project_id')
+        .get(projectController.getProject)
+        .put(projectController.putProject)
+        .delete(projectController.deleteProject);*/
 
     return router;
 }

@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 
 // Define our movie schema
 var projecttype   = new mongoose.Schema({
-    _id: Number,
     protjectType: {type: String, unique:true,required:true}
 });
 

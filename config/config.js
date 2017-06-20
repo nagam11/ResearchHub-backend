@@ -3,9 +3,13 @@ Config.db = {};
 Config.app={};
 Config.auth = {};
 
-Config.db.host = 'researchhub-shard-00-00-fejf5.mongodb.net:27017';
-Config.db.name = 'admin';
-Config.db.pass = 'ZJ9WWEoGlO2K5zu4';
+//Config.db.host = 'researchhub-shard-00-00-fejf5.mongodb.net:27017';
+//Config.db.name = 'admin';
+//Config.db.pass = 'ZJ9WWEoGlO2K5zu4';
+Config.db.host = 'localhost:27017';
+Config.db.name = 'researchhub';
+
+
 /* Admin user login- may be needed later 
 */
 //Config.db.uri = "mongodb://researchhubadmin:ZJ9WWEoGlO2K5zu4@researchhub-shard-00-00-fejf5.mongodb.net:27017,researchhub-shard-00-01-fejf5.mongodb.net:27017,researchhub-shard-00-02-fejf5.mongodb.net:27017/admin?ssl=true&replicaSet=ResearchHub-shard-0&authSource=admin";

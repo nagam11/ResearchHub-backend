@@ -11,7 +11,7 @@ function projectRoutes(passport) {
     mw.unless = unless;
 
     //middleware
-    router.use(mw.unless({method: ['GET','POS','PUT','DELETE', 'OPTIONS']}));
+    router.use(mw.unless({method: ['GET','POST','PUT','DELETE', 'OPTIONS']}));
 
     router.route('/')
         .post(projectController.postProject)

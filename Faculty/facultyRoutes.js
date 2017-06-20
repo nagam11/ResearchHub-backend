@@ -18,6 +18,8 @@ function facultyRoutes(passport) {
     router.use(mw.unless({method: ['GET', 'OPTIONS']}));
 
     router.route('/').get(facultyController.getFaculties);
+    router.route('/:fucultyid').get(facultyController.getFacultyByid);
+
 
     return router;
 }

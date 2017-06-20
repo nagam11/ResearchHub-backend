@@ -5,26 +5,40 @@ var sendJSONresponse = function(res, status, content) {
     res.json(content);
 };
 
-
-
 exports.postProject = function(req, res) {
     var project = new Project(req.body);
+    console.log('Project'+project);
+    console.log('Request'+JSON.stringify(req.body.chair));
     //do not allow user to fake identity. The user who postet the movie must be the same user that is logged in
-    if (!req.user.equals(project.user)) {
+ /*   if (!req.user.equals(project.user)) {
         res.sendStatus(401);
     }
+    if (!req.projetType.equals(project.projetType)) {
+        res.sendStatus(401);
+    }*/
+    //if (!req.chair.equals(project.chair)) {
+    //    res.sendStatus(401);
+    //}
+    //project._chair =req.body.chair;
+    console.log(project);
     project.save(function(err, m) {
         if (err) {
+            console.log(err);
             res.status(400).send(err);
             return;
         }
-        res.status(201).json(m);
+        //res.status(201).json(m);
+        var sendJSONresponse = function(res, status, content) {
+            res.status(status);
+            res.json(content);
+        };
+
     });
 };
 // Create endpoint /api/projects for GET
 exports.getProjects = function(req, res) {
     console.log('Finding projects ...');
-    Project.find(function(err, projects) {
+    /*Project.find(function(err, projects) {
         if (err) {
             res.status(400).send(err);
             return;
@@ -32,12 +46,22 @@ exports.getProjects = function(req, res) {
         console.log(projects);
         //res.json(projects);
         sendJSONresponse(res, 200, projects);
+    }); */
+    Project.find().populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, projects) {
+        console.log('name: ', projects);
+        if (err) {
+            res.status(400).send(err);
+            return;
+            console.error('eorro: ', err);
+        }
+        sendJSONresponse(res, 200, projects);
     });
+    //sendJSONresponse(res, 200, '');
 };
 // Create endpoint /api/projects/:project_id for GET
 exports.getProject= function(req, res) {
     // Use the Project model to find a specific movie
-    Project.findById(req.params.project_id, function(err, project) {
+   Project.findById(req.params.project_id, function(err, project) {
         if (err) {
             res.status(400).send(err)
             return;
@@ -45,6 +69,7 @@ exports.getProject= function(req, res) {
 
         res.json(project);
     });
+
 };
 // Create endpoint /api/projects/:project_id for PUT
 exports.putProject = function(req, res) {
