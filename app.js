@@ -70,6 +70,6 @@ app.use('/api/educationlevels',educationLevels(passport));
 app.use('/api/languages',languages(passport));
 app.use('/api/chairs',chairs(passport)); // do we need it?
 app.use('/api/faculties',facultyRoutes(passport));
-app.use('/api/academics',facultyRoutes(passport));
+app.use('/api/academics',academicsRoutes(passport));
 app.use('/api/skills',skillRoutes(passport));
 module.exports = app;

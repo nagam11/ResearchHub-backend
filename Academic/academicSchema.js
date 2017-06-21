@@ -2,12 +2,12 @@
  * Created by Devgen on 15.06.2017.
  */
 var mongoose = require('mongoose');
-
+var UserSchema = require('../user/userSchema');
 
 var options = {discriminatorKey: 'kind'};
-var academic = userSchema.discriminator('academics',
-    new mongoose.Schema({
 
+var academic = UserSchema.discriminator('academics',
+    new mongoose.Schema({
     projects:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'projects'
@@ -17,8 +17,8 @@ var academic = userSchema.discriminator('academics',
         ref: 'chairs',
         // required:true
     }
-
 },options));
 
 // Export the Mongoose model
-module.exports = mongoose.model('academics', academic);
+ // module.exports = mongoose.model('academics', academic);
+ module.exports = academic;

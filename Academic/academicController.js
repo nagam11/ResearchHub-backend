@@ -3,7 +3,7 @@
  */
 var Academic = require('./academicSchema');
 var User = require('../user/userSchema');
-//var projectType = mongoose.model('ProjectType');
+
 
 var sendJSONresponse = function(res, status, content) {
     res.status(status);
@@ -43,10 +43,9 @@ exports.getAcademicById = function(req, res) {
 
 
 exports.createAcademic = function(req, res) {
-    console.log("new academic");
+    console.log("new academic : "+JSON.stringify(req.body));
     var academic = new Academic(req.body);
-    console.log('Project:'+academic);
-
+    console.log("new academic  created and try to save: "+JSON.stringify(academic));
     academic.save(function(err, m) {
         if (err) {
             console.log(err);
@@ -54,10 +53,25 @@ exports.createAcademic = function(req, res) {
             return;
         }
         //res.status(201).json(m);
+        if(assert.equal(academic.__t, 'academics')){
+            console.log('its academic');
+        }
+
         var sendJSONresponse = function(res, status, content) {
             res.status(status);
             res.json(content);
         };
 
     });
+   /* var academic = new Academic({
+
+        "username": "ga57som",
+        "firstname": "Evgenij",
+        "lastname": "Dauenhauer",
+        "email": "e.dauenhauer@tum.de",
+        "password": "123",
+        "chair": {"_d": "594971b8d79ba836d4fe020e", "name": "Information systems"}
+
+    });*/
+
 };
