@@ -44,6 +44,6 @@ var project   = new mongoose.Schema({
         overLapMessage: String
     }]
 });
-
+project.index({title : 'text'});
 // Export the Mongoose model
 module.exports = mongoose.model('projects', project);

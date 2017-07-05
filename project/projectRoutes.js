@@ -4,6 +4,7 @@ module.exports = projectRoutes;
 function projectRoutes(passport) {
 
     var projectController = require('./projectController');
+    var searchProjectController = require('./searchProjectController');
     var router = require('express').Router();
     var unless = require('express-unless');
 
@@ -21,6 +22,8 @@ function projectRoutes(passport) {
         .get(projectController.getProject)
         .put(projectController.putProject)
         .delete(projectController.deleteProject);
+
+    router.route('/search').post(searchProjectController.searchForProjects);
 
     return router;
 }

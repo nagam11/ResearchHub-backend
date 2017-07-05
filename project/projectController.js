@@ -47,6 +47,8 @@ exports.getProjects = function(req, res) {
         //res.json(projects);
         sendJSONresponse(res, 200, projects);
     }); */
+    console.log('Body query: ', JSON.stringify(req.body));
+
     Project.find().populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, projects) {
         console.log('name: ', projects);
         if (err) {

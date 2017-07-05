@@ -10,6 +10,6 @@ var skill   = new mongoose.Schema({
     unique:true,
         required:true}
 });
-
+skill.index({skill : 'text'});
 // Export the Mongoose model
 module.exports = mongoose.model('skills', skill);
