@@ -24,8 +24,6 @@ exports.searchForProjects = function(req, res) {
      sendJSONresponse(res, 200, projects);
      }); */
 
-   /* {"$text": {"$search": req.body.title}}*/
-    console.log('Body query: ', JSON.stringify(req.body.title));
     Project.find( {$or: [
         {'title': {'$regex': req.body.searchText,'$options' : 'i'}},
         {'description': {'$regex': req.body.searchText,'$options' : 'i'}}
