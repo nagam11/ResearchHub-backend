@@ -1,5 +1,6 @@
 // importing Project model
 var Project = require('./projectSchema');
+
 var sendJSONresponse = function(res, status, content) {
     res.status(status);
     res.json(content);
@@ -62,14 +63,17 @@ exports.getProjects = function(req, res) {
 };
 // Create endpoint /api/projects/:project_id for GET
 exports.getProject= function(req, res) {
-    // Use the Project model to find a specific movie
-   Project.findById(req.params.project_id, function(err, project) {
-        if (err) {
-            res.status(400).send(err)
-            return;
-        };
+    console.log('Body query: ', JSON.stringify(req.body));
 
-        res.json(project);
+    // --Find project by ID and populate fields
+    Project.findById(req.params.project_id).populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, project) {
+        console.log('name: ', project);
+        if (err) {
+            res.status(400).send(err);
+            return;
+            console.error('error: ', err);
+        }
+        sendJSONresponse(res, 200, project);
     });
 
 };
