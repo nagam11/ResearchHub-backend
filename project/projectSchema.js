@@ -12,19 +12,19 @@ var project   = new mongoose.Schema({
         ref: 'projecttypes',
       //  required:true
     },
-    _requeredLevel: {
+    _requeredLevel: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'educationlevels'
-    },
+    }],
     _chair:{
         type: mongoose.Schema.Types.ObjectId,
         ref:'chairs',
         required:true
     },
-    _language: {
+    _languages: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'languages'
-    },
+    }],
     description: String,
     _advisor: {
         type: mongoose.Schema.Types.ObjectId,

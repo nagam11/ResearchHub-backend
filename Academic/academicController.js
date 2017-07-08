@@ -4,7 +4,6 @@
 var Academic = require('./academicSchema');
 var User = require('../user/userSchema');
 
-
 var sendJSONresponse = function(res, status, content) {
     res.status(status);
     res.json(content);
@@ -53,10 +52,10 @@ exports.createAcademic = function(req, res) {
             return;
         }
         //res.status(201).json(m);
-        if(assert.equal(academic.__t, 'academics')){
+        //TODO fix this exeception
+       /* if(assert.equal(academic.kind, 'academics')){
             console.log('its academic');
-        }
-
+        }*/
         var sendJSONresponse = function(res, status, content) {
             res.status(status);
             res.json(content);
