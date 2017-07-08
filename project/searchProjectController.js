@@ -27,8 +27,8 @@ exports.searchForProjects = function(req, res) {
    /* {"$text": {"$search": req.body.title}}*/
     console.log('Body query: ', JSON.stringify(req.body.title));
     Project.find( {$or: [
-        {'title': {'$regex': req.body.title,'$options' : 'i'}},
-        {'description': {'$regex': req.body.description,'$options' : 'i'}}
+        {'title': {'$regex': req.body.searchText,'$options' : 'i'}},
+        {'description': {'$regex': req.body.searchText,'$options' : 'i'}}
         ]}
     ).populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, projects) {
         console.log('name: ', projects);
