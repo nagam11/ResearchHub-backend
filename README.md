@@ -1,11 +1,9 @@
-# ResearchHub backend application 
+# ResearchHub backend
 
 ResearchHub frontend can be found [here](https://github.com/nagam11/ResearchHub-frontend).
 
 Deployment on Heroku can be found [here](https://researchhub-server.herokuapp.com/) 
 (HEROKU- still on development)
-
-MongoDB database is hosted in MongoDB Atlas: researchhub-shard-00-00-fejf5.mongodb.net
 
 ## Technologies
 
@@ -15,23 +13,16 @@ express
 
 MongoDB 
 
-Heroku 
+Heroku
 
 
-## Setup 
-
-go to your project root folder via command line
-```
-cd .../ResearchHub-backend-master
-```
-
-**install node dependencies**
+## install node dependencies
 
 ```
 npm install
 ```
 
-## running
+## Run
 
 start the web server
 
@@ -41,8 +32,7 @@ node start
 
 ## running
 
-navigate to http://localhost:3000/. TO BE FIXED
+http://localhost:3000/. 
 
-or http://localhost:3000/api/projects to see the first endpoint.
 
 
