@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 
 // Define our chair schema
 var chair   = new mongoose.Schema({
-    //_id: Number,
     name: {
         type:String,
         required:true,

@@ -33,7 +33,8 @@ exports.getChairs = function(req,res){
 exports.getChair = function(req, res) {
     // Use the Movie model to find a specific movie
     console.log('Finding one chair ...:');
-    Chair.findById(req.params.chair_id, function(err, chair) {
+
+    Chair.findById(req.params.chair_id).populate('faculty','name').exec(function(err, chair) {
         if (err) {
             res.status(500).send(err)
             return;

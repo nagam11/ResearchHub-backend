@@ -4,6 +4,7 @@
 var Academic = require('./academicSchema');
 var User = require('../user/userSchema');
 
+
 var sendJSONresponse = function(res, status, content) {
     res.status(status);
     res.json(content);
@@ -57,6 +58,7 @@ exports.createAcademic = function(req, res) {
             console.log('its academic');
         }*/
         var sendJSONresponse = function(res, status, content) {
+            console.log(status);
             res.status(status);
             res.json(content);
         };

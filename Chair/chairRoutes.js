@@ -19,10 +19,5 @@ function chairRoutes(passport) {
     router.route('/').get(chairController.getChairs).post(chairController.createChair);
     router.route('/:chair_id').get(chairController.getChair);
 
-  /*  router.route('/:project_id')
-        .get(projectController.getProject)
-        .put(projectController.putProject)
-        .delete(projectController.deleteProject);*/
-
     return router;
 }

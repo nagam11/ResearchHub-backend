@@ -18,8 +18,11 @@ var project   = new mongoose.Schema({
     }],
     _chair:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'chairs',
-        required:true
+        ref:'chairs'
+    },
+    _partner:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'companies'
     },
     _languages: [{
         type: mongoose.Schema.Types.ObjectId,
