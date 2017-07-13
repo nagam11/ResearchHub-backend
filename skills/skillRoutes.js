@@ -1,5 +1,5 @@
 /**
- * Created by Devgen on 16.06.2017.
+ * Created by MarlaN on 08.07.2017.
  */
 module.exports = skillRoutes;
 
@@ -16,6 +16,10 @@ function skillRoutes(passport) {
     router.use(mw.unless({method: ['GET','PUT', 'OPTIONS']}));
 
     router.route('/').get(skillController.getSkills);
+    router.route('/terms/:skill_term')
+        .get(skillController.searchForSkills);
+    router.route('/terms/')
+        .get(skillController.searchForSkill);
 
     return router;
 }

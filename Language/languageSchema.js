@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 // Define our movie schema
 var language   = new mongoose.Schema({
-    _id: Number,
+    //_id: Number,
     language: {type:String,required:true,unique:true}
 });
 

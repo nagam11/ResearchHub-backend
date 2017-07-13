@@ -1,5 +1,6 @@
 // importing Project model
 var Project = require('./projectSchema');
+
 var sendJSONresponse = function(res, status, content) {
     res.status(status);
     res.json(content);
@@ -7,8 +8,7 @@ var sendJSONresponse = function(res, status, content) {
 
 exports.postProject = function(req, res) {
     var project = new Project(req.body);
-    console.log('Project'+project);
-    console.log('Request'+JSON.stringify(req.body.chair));
+    console.log(req.body);
     //do not allow user to fake identity. The user who postet the movie must be the same user that is logged in
  /*   if (!req.user.equals(project.user)) {
         res.sendStatus(401);
@@ -20,7 +20,6 @@ exports.postProject = function(req, res) {
     //    res.sendStatus(401);
     //}
     //project._chair =req.body.chair;
-    console.log(project);
     project.save(function(err, m) {
         if (err) {
             console.log(err);
@@ -38,15 +37,6 @@ exports.postProject = function(req, res) {
 // Create endpoint /api/projects for GET
 exports.getProjects = function(req, res) {
     console.log('Finding projects ...');
-    /*Project.find(function(err, projects) {
-        if (err) {
-            res.status(400).send(err);
-            return;
-        }
-        console.log(projects);
-        //res.json(projects);
-        sendJSONresponse(res, 200, projects);
-    }); */
     Project.find().populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, projects) {
         console.log('name: ', projects);
         if (err) {
@@ -56,18 +46,19 @@ exports.getProjects = function(req, res) {
         }
         sendJSONresponse(res, 200, projects);
     });
-    //sendJSONresponse(res, 200, '');
 };
 // Create endpoint /api/projects/:project_id for GET
 exports.getProject= function(req, res) {
-    // Use the Project model to find a specific movie
-   Project.findById(req.params.project_id, function(err, project) {
+   // console.log('Body query: ', JSON.stringify(req.body));
+    // --Find project by ID and populate fields
+    Project.findById(req.params.project_id).populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, project) {
+        console.log('name: ', project);
         if (err) {
-            res.status(400).send(err)
+            res.status(400).send(err);
             return;
-        };
-
-        res.json(project);
+            console.error('error: ', err);
+        }
+        sendJSONresponse(res, 200, project);
     });
 
 };

@@ -12,19 +12,22 @@ var project   = new mongoose.Schema({
         ref: 'projecttypes',
       //  required:true
     },
-    _requeredLevel: {
+    _requeredLevel: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'educationlevels'
-    },
+    }],
     _chair:{
         type: mongoose.Schema.Types.ObjectId,
-        ref:'chairs',
-        required:true
+        ref:'chairs'
     },
-    _language: {
+    _partner:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'companies'
+    },
+    _languages: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'languages'
-    },
+    }],
     description: String,
     _advisor: {
         type: mongoose.Schema.Types.ObjectId,
@@ -44,6 +47,6 @@ var project   = new mongoose.Schema({
         overLapMessage: String
     }]
 });
-
+project.index({title : 'text'});
 // Export the Mongoose model
 module.exports = mongoose.model('projects', project);
