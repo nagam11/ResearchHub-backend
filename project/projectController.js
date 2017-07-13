@@ -52,7 +52,7 @@ exports.getProjects = function(req, res) {
         if (err) {
             res.status(400).send(err);
             return;
-            console.error('eorro: ', err);
+            console.error('error: ', err);
         }
         sendJSONresponse(res, 200, projects);
     });
