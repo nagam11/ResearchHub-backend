@@ -1,6 +1,8 @@
 var Config = require('../config/config.js');
 var User = require('./userSchema');
 var jwt = require('jwt-simple');
+var Q = require('q');
+var _ = require('lodash');
 
 module.exports.login = function(req, res){
 
@@ -64,6 +66,39 @@ module.exports.signup = function(req, res){
     });
 };
 
+module.exports.getCurrent = function(req, res) { 
+    getById(req.params.id)
+        .then(function (user) {
+            if (user) {
+                console.log('sending user');
+                res.send(user);
+            } else {
+                res.sendStatus(404);
+            }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+    });
+}
+
+function getById(id) {
+    var deferred = Q.defer();
+
+    User.findById({_id:id}).lean().exec(function (err, user) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if (user) {
+            // return user (without hashed password)
+            deferred.resolve(_.omit(user, 'password'));
+        } else {
+            // user not found
+            deferred.resolve();
+        }
+    });
+
+    return deferred.promise;
+}
+
 module.exports.unregister = function(req, res) {
     req.user.remove().then(function (user) {
         res.sendStatus(200);
@@ -76,7 +111,11 @@ function createToken(user) {
     var tokenPayload = {
         user: {
             _id: user._id,
-            email: user.email
+            email: user.email,
+            username: user.username,
+            kind: user.kind,
+            first: user.firstname,
+            last: user.lastname
         }
 
     };
