@@ -37,7 +37,7 @@ exports.postProject = function(req, res) {
 // Create endpoint /api/projects for GET
 exports.getProjects = function(req, res) {
     console.log('Finding projects ...');
-    Project.find().populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, projects) {
+    Project.find().populate('_chair', 'name').populate('_projetType', 'protjectType').populate('_partner', 'name').populate('ratings', ['InterestFields', 'Description']).exec(function(err, projects) {
         console.log('name: ', projects);
         if (err) {
             res.status(400).send(err);
@@ -51,7 +51,7 @@ exports.getProjects = function(req, res) {
 exports.getProject= function(req, res) {
    // console.log('Body query: ', JSON.stringify(req.body));
     // --Find project by ID and populate fields
-    Project.findById(req.params.project_id).populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, project) {
+    Project.findById(req.params.project_id).populate('_chair', 'name').populate('_projetType', 'protjectType').populate('ratings', ['InterestFields', 'Description']).populate('_partner', 'name').exec(function(err, project) {
         console.log('name: ', project);
         if (err) {
             res.status(400).send(err);

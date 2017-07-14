@@ -1,11 +1,14 @@
 /**
  * Created by Devgen on 16.06.2017.
  */
-module.exports = skillRoutes;
+//module.exports = skillRoutes;
+module.exports = ratingRoutes;
 
-function languagesRoutes(passport) {
 
-    var skillController = require('./skillController');
+function ratingRoutes(passport) {
+
+    //var skillController = require('./skillController');
+    var ratingController = require('./ratingController');
     var router = require('express').Router();
     var unless = require('express-unless');
 
@@ -15,7 +18,9 @@ function languagesRoutes(passport) {
     //middleware
     router.use(mw.unless({method: ['GET','PUT', 'OPTIONS']}));
 
-    router.route('/').get(skillController.getSkills);
+    //router.route('/').get(skillController.getSkills);
+    router.route('/').get(ratingController.getRatings);
+    router.route('/').post(ratingController.createRating);
 
     return router;
 }
