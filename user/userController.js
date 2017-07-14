@@ -45,16 +45,11 @@ module.exports.signup = function(req, res){
         res.status(400).send('password required');
         return;
     }
-    if(!req.body.username){
-        res.status(400).send('username required');
-        return;
-    }
 
     var user = new User();
 
     user.email = req.body.email;
     user.password = req.body.password;
-    user.username = req.body.username;
 
     user.save(function(err) {
         if (err) {
@@ -98,6 +93,79 @@ function getById(id) {
 
     return deferred.promise;
 }
+
+module.exports.update = function(req, res) {
+    updateById(req.params.id, req.body)
+        .then(function () {
+            res.sendStatus(200);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function updateById(id, userParam) {
+    var deferred = Q.defer();
+
+    // validation
+    User.findById({_id:id}, function (err, user) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+
+        if (user.email !== userParam.email) {
+            // email has changed so check if the new email is already taken
+            User.findOne(
+                { email: userParam.email },
+                function (err, user) {
+                    if (err) deferred.reject(err.name + ': ' + err.message);
+
+                    if (user) {
+                        // email already exists
+                        deferred.reject('Email "' + req.body.username + '" is already taken')
+                    } else {
+                        updateUser(id);
+                    }
+                });
+        } else {
+            updateUser(id);
+        }
+    });
+
+    function updateUser(id) {
+        // fields to update
+        var set = {
+            'firstname': userParam.firstName,
+            'lastname': userParam.lastName,
+            'photo': 'blob',
+            'email': userParam.email,
+            'birthday': userParam.birthday,
+            'degree': userParam.degree,
+            'skills': userParam.skills,
+            'description': userParam.description,
+            'faculty': userParam.faculty,
+            'major': userParam.major,
+            'minor': userParam.minor,
+            'graduation': userParam.graduation,
+            'cv': 'blob'
+        };
+
+        // update password if it was entered
+        //if (userParam.password) {
+        //    set.hash = bcrypt.hashSync(userParam.password, 10);
+        //}
+
+        User.findOneAndUpdate(
+            { _id: id },
+            { $set: set },
+            function (err, doc) {
+                if (err) deferred.reject(err.name + ': ' + err.message);
+
+                deferred.resolve();
+            });
+    }
+
+    return deferred.promise;
+}
+
 
 module.exports.unregister = function(req, res) {
     req.user.remove().then(function (user) {
