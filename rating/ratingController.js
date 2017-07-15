@@ -73,6 +73,8 @@ exports.createRating = function (req,res) {
         };
         console.log('Set referecne : ');
         console.log(content);
+        console.log('ID of the created object');
+        console.log(content.id);
         sendJSONresponse(res, 200, content);
     });
 };

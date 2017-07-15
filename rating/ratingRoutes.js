@@ -19,7 +19,7 @@ function ratingRoutes(passport) {
     mw.unless = unless;
 
     //middleware
-    router.use(mw.unless({method: ['GET','PUT', 'OPTIONS']}));
+    router.use(mw.unless({method: ['GET','POST', 'OPTIONS']}));
 
     //router.route('/').get(skillController.getSkills);
     router.route('/').get(ratingController.getRatings);

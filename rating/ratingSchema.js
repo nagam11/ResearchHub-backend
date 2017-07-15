@@ -19,11 +19,16 @@ var rating   = new mongoose.Schema({
         required:true,
         unique:true
     },
-    company:{
+   /* Representative: {
+        type:String,
+        required:true,
+        unique:true
+    }*/
+  /*  company:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'companies',
         required:true
-    }
+    }*/
 });
 
 // Export the Mongoose model
