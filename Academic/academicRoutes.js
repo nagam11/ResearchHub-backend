@@ -17,6 +17,7 @@ function academicRoutes(passport) {
 
     router.route('/').get(academicController.getAcademics);
     router.route('/').post(academicController.createAcademic);
+    router.post('/signup', academicController.signup);
     router.route('/:academic_id').get(academicController.getAcademicById);
 
     /*  router.route('/:project_id')
