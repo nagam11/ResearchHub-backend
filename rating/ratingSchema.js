@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 // Define our movie schema
 var rating   = new mongoose.Schema({
-    _id: Number,
+    // _id: Number,
     company: String, //Temp string
     interestFields : String,
     overlapMessage: String
