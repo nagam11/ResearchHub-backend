@@ -5,7 +5,6 @@ var Q = require('q');
 var _ = require('lodash');
 
 module.exports.login = function(req, res){
-
     if(!req.body.email){
         res.status(400).send('email required');
         return;
@@ -16,6 +15,7 @@ module.exports.login = function(req, res){
     }
 
     User.findOne({email: req.body.email}, function(err, user){
+
         if (err) {
             res.status(500).send(err);
             return
@@ -178,7 +178,10 @@ function createToken(user) {
     var tokenPayload = {
         user: {
             _id: user._id,
-            username: user.username
+            username: user.username,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email
         }
 
     };

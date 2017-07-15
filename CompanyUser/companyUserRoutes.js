@@ -14,9 +14,10 @@ function companyUserRoutes(passport) {
     mw.unless = unless;
 
     //middleware
-    router.use(mw.unless({method: ['GET']}));
+    router.use(mw.unless({method: ['GET', 'POST']}));
 
     router.route('/').get(companyUserController.getCompanyUsers);
+    router.post('/signup', companyUserController.signup);
 
     return router;
 }

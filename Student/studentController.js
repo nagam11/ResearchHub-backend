@@ -1,12 +1,44 @@
 var Config = require('../config/config.js');
 var Student = require('./studentSchema');
 var User = require('../user/userSchema');
+var jwt = require('jwt-simple');
 var Q = require('q');
 var _ = require('lodash');
 
 var sendJSONresponse = function(res, status, content) {
     res.status(status);
     res.json(content);
+};
+
+module.exports.signup = function(req, res){
+    if(!req.body.email){
+        res.status(400).send('email required');
+        return;
+    }
+    if(!req.body.password){
+        res.status(400).send('password required');
+        return;
+    }
+
+    var student = new Student();
+
+    student.email = req.body.email;
+    student.password = req.body.password;
+    if(req.body.firstname) {
+        student.firstname = req.body.firstname;
+    }
+    if(req.body.lastname) {
+        student.lastname = req.body.lastname;
+    }
+
+    student.save(function(err) {
+        if (err) {
+            res.status(500).send(err);
+            return;
+        }
+
+        res.status(201).json({token: createToken(student)});
+    });
 };
 
 exports.getStudents = function(req,res){
@@ -126,4 +158,18 @@ function updateById(id, studentParam) {
     }
 
     return deferred.promise;
-}
+};
+
+function createToken(user) {
+    var tokenPayload = {
+        user: {
+            _id: user._id,
+            username: user.username,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            email: user.email
+        }
+
+    };
+    return jwt.encode(tokenPayload,Config.auth.jwtSecret);
+};

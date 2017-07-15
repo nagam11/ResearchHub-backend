@@ -14,6 +14,7 @@ function studentRoutes(passport) {
 
     router.get('/', studentController.getStudents);
     router.post('/', studentController.createStudent);
+    router.post('/signup', studentController.signup);
     router.get('/:id', studentController.getStudentById);
     router.put('/update/:id', studentController.updateStudent);
 
