@@ -133,8 +133,8 @@ function updateById(id, userParam) {
     function updateUser() {
         // fields to update
         var set = {
-            'firstname': userParam.firstName,
-            'lastname': userParam.lastName,
+            'firstname': userParam.firstname,
+            'lastname': userParam.lastname,
             'photo': 'blob',
             'email': userParam.email,
             'birthday': userParam.birthday,

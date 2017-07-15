@@ -5,6 +5,16 @@ var options = {discriminatorKey: 'kind'};
 
 var student = UserSchema.discriminator('students',
     new mongoose.Schema({
+    firstname: {
+        type: String,
+        // required: true,
+        unique: false
+    },
+    lastname: {
+        type: String,
+        // required: true,
+        unique: false
+    },
     graduation: {
         type: Date
     },
