@@ -5,20 +5,40 @@ var options = {discriminatorKey: 'kind'};
 
 var student = UserSchema.discriminator('students',
     new mongoose.Schema({
+    graduation: {
+        type: Date
+    },
+    major: {
+        type: String
+    },
+    minor: {
+        type: String
+    },
+    description: {
+        type: String
+    },
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
     projectsApplied:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'projects'
     }],
-    faculty:{
+    faculty: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'faculties',
         // required:true
-    }
-    educationLevel:{
+    },
+    degree: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'educationlevels',
         // required:true
-    }
+    },
+    skills: [{
+        type:String
+    }]
 },options));
 
 module.exports = student;

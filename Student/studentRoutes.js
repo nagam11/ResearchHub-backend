@@ -6,15 +6,16 @@ function studentRoutes(passport) {
     var router = require('express').Router();
     var unless = require('express-unless');
 
-     var mw = passport.authenticate('jwt', {session: false});
-     mw.unless = unless;
+    var mw = passport.authenticate('jwt', {session: false});
+    mw.unless = unless;
 
     //middleware
     router.use(mw.unless({method: ['GET','POST','PUT', 'OPTIONS']}));
 
-    router.route('/').get(studentController.getStudents);
-    router.route('/').post(studentController.createStudent);
-    router.route('/:student_id').get(studentController.getStudentById);
+    router.get('/', studentController.getStudents);
+    router.post('/', studentController.createStudent);
+    router.get('/:id', studentController.getStudentById);
+    router.put('/update/:id', studentController.updateStudent);
 
     return router;
 }

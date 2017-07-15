@@ -122,15 +122,15 @@ function updateById(id, userParam) {
                         // email already exists
                         deferred.reject('Email "' + req.body.username + '" is already taken')
                     } else {
-                        updateUser(id);
+                        updateUser();
                     }
                 });
         } else {
-            updateUser(id);
+            updateUser();
         }
     });
 
-    function updateUser(id) {
+    function updateUser() {
         // fields to update
         var set = {
             'firstname': userParam.firstName,
@@ -153,7 +153,7 @@ function updateById(id, userParam) {
         //    set.hash = bcrypt.hashSync(userParam.password, 10);
         //}
 
-        User.findOneAndUpdate(
+        User.findByIdAndUpdate(
             { _id: id },
             { $set: set },
             function (err, doc) {
