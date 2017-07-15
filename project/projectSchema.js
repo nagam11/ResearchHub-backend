@@ -31,11 +31,11 @@ var project   = new mongoose.Schema({
     description: String,
     _advisor: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'academics'
     },
     _superadvisor: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'academics'
     },
     _requeredSkills: [{
         type: mongoose.Schema.Types.ObjectId,
