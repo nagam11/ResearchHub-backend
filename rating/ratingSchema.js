@@ -1,11 +1,14 @@
 /**
  * Created by Devgen on 16.06.2017.
  */
+/**
+ * Modified by Moawiah. 08.07.2017
+ */
 var mongoose = require('mongoose');
 
 // Define our movie schema
 var rating   = new mongoose.Schema({
-    _id: Number,
+    //_id: Number,
     InterestFields: {
         type:String,
         required:true,

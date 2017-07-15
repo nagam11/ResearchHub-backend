@@ -7,6 +7,8 @@ var project   = new mongoose.Schema({
 
     createdOn : {type: Date,  "default": Date.now  },
     title: String,
+    ratingDes: String,
+    ratingFields: String,
     _projetType : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'projecttypes',

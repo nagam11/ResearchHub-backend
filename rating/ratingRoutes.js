@@ -1,6 +1,9 @@
 /**
  * Created by Devgen on 16.06.2017.
  */
+/**
+ * Modified by Moawiah. 08.07.2017
+ */
 //module.exports = skillRoutes;
 module.exports = ratingRoutes;
 
