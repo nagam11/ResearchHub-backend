@@ -33,7 +33,6 @@ exports.postProject = function(req, res) {
 exports.getProjects = function(req, res) {
     console.log('Finding projects ...');
     Project.find().populate('_languages','language').populate('_requeredLevel','level').populate('_requeredSkills','skill').populate('ratings', ['InterestFields', 'Description', 'Representative']).populate('_partner','name').populate('_superadvisor',['firstname','lastname']).populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, projects) {
-        console.log('name: ', projects);
         if (err) {
             res.status(400).send(err);
             return;
@@ -47,7 +46,6 @@ exports.getProject= function(req, res) {
    // console.log('Body query: ', JSON.stringify(req.body));
     // --Find project by ID and populate fields
     Project.findById(req.params.project_id).populate('_languages','language').populate('_requeredLevel','level').populate('_requeredSkills','skill').populate('_partner','name').populate('ratings', ['InterestFields', 'Description']).populate('_superadvisor',['firstname','lastname']).populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, project) {
-        console.log('name: ', project);
         if (err) {
             res.status(400).send(err);
             return;
@@ -59,6 +57,8 @@ exports.getProject= function(req, res) {
 };
 // Create endpoint /api/projects/:project_id for PUT
 exports.putProject = function(req, res) {
+    console.log("updating project ");
+    console.log(req);
     // Use the Project model to find a specific movie and update it
     Project.findByIdAndUpdate(
         req.params.project_id,

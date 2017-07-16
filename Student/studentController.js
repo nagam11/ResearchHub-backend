@@ -99,7 +99,7 @@ module.exports.updateStudent = function(req, res) {
 
 function updateById(id, studentParam) {
     var deferred = Q.defer();
-
+    console.log("changing student");
     // validation
     Student.findById({_id:id}, function (err, student) {
         if (err) deferred.reject(err.name + ': ' + err.message);
@@ -139,6 +139,7 @@ function updateById(id, studentParam) {
             'major': studentParam.major,
             'minor': studentParam.minor,
             'graduation': studentParam.graduation,
+            'projectsApplied': studentParam.projectsApplied,
             'cv': 'blob'
         };
 
@@ -150,13 +151,14 @@ function updateById(id, studentParam) {
         Student.findByIdAndUpdate(
             { _id: id },
             { $set: set },
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
+            function (err, student) {
+                if (err) {
 
+                deferred.reject(err.name + ': ' + err.message);
                 deferred.resolve();
-            });
+                }
+        });
     }
-
     return deferred.promise;
 };
 
