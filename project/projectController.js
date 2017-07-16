@@ -20,18 +20,13 @@ exports.postProject = function(req, res) {
     //    res.sendStatus(401);
     //}
     //project._chair =req.body.chair;
-    project.save(function(err, m) {
+    project.save(function(err, content) {
         if (err) {
             console.log(err);
             res.status(400).send(err);
             return;
         }
-        //res.status(201).json(m);
-        var sendJSONresponse = function(res, status, content) {
-            res.status(status);
-            res.json(content);
-        };
-
+        sendJSONresponse(res, 200, content);
     });
 };
 // Create endpoint /api/projects for GET

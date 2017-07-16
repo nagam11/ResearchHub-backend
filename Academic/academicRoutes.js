@@ -18,7 +18,7 @@ function academicRoutes(passport) {
     router.route('/').get(academicController.getAcademics);
     router.route('/').post(academicController.createAcademic);
     router.route('/:academic_id').get(academicController.getAcademicById);
-
+    router.route('/:academic_id').put(academicController.putAcademicbyId);
     /*  router.route('/:project_id')
      .get(projectController.getProject)
      .put(projectController.putProject)
