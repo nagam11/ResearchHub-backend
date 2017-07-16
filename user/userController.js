@@ -135,7 +135,6 @@ function updateById(id, userParam) {
         var set = {
             'firstname': userParam.firstname,
             'lastname': userParam.lastname,
-            'photo': 'blob',
             'email': userParam.email,
             'birthday': userParam.birthday,
             'degree': userParam.degree,
