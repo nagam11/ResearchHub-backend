@@ -181,7 +181,8 @@ function createToken(user) {
             username: user.username,
             firstname: user.firstname,
             lastname: user.lastname,
-            email: user.email
+            email: user.email,
+            kind: user.kind
         }
 
     };
