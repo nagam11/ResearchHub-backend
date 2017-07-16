@@ -129,7 +129,6 @@ function updateById(id, studentParam) {
         var set = {
             'firstname': studentParam.firstname,
             'lastname': studentParam.lastname,
-            'photo': 'blob',
             'email': studentParam.email,
             'birthday': studentParam.birthday,
             'degree': studentParam.degree,

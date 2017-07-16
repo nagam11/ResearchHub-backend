@@ -16,21 +16,30 @@ var student = UserSchema.discriminator('students',
         unique: false
     },
     graduation: {
-        type: Date
+        type: Date,
+        unique: false
     },
     major: {
-        type: String
+        type: String,
+        unique: false
     },
     minor: {
-        type: String
+        type: String,
+        unique: false
     },
     description: {
-        type: String
+        type: String,
+        unique: false
     },
     email: {
         type: String,
         unique: true,
         required: true
+    },
+    photo: {
+        type: String,
+        // required: true,
+        unique: false
     },
     projectsApplied:[{
         type: mongoose.Schema.Types.ObjectId,

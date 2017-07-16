@@ -86,5 +86,5 @@ app.use('/api/companies',companyRoutes(passport));
 app.use('/api/companyUsers',companyUserRoutes(passport));
 app.use('/api/students',studentRoutes(passport));
 app.use('/api/ratings',ratingRoutes(passport));
-app.use('/api/photos', photoRoutes(passport));
+app.use('/api/uploads', photoRoutes(passport));
 module.exports = app;

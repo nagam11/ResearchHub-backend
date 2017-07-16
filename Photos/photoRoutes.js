@@ -14,8 +14,8 @@ function photoRoutes(passport) {
 
 
     //router.post('/');
-    router.post('/', photoController.savePhoto);
-    //router.get('/:id', photoController.getPhoto);
+    router.post('/:id', photoController.savePhoto);
+    router.get('/:id', photoController.getPhoto);
 
     return router;
 
