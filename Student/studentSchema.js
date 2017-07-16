@@ -47,7 +47,8 @@ var student = UserSchema.discriminator('students',
         // required:true
     },
     skills: [{
-        type:String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'skills'
     }]
 },options));
 

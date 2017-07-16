@@ -46,6 +46,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 //passport
 var passport = require('passport');
 var jwtConfig = require('./passport/jwtConfig');
@@ -67,6 +72,7 @@ var companyRoutes = require('./Company/companyRoutes');
 var companyUserRoutes = require('./CompanyUser/companyUserRoutes');
 var studentRoutes = require("./Student/studentRoutes");
 var ratingRoutes = require('./rating/ratingRoutes');
+var photoRoutes = require('./Photos/photoRoutes');
 app.use('/api/projects', projectRoutes(passport));
 app.use('/api/projecttypes',projectTypesRoutes(passport));
 app.use('/api/user', userRoutes(passport));
@@ -80,4 +86,5 @@ app.use('/api/companies',companyRoutes(passport));
 app.use('/api/companyUsers',companyUserRoutes(passport));
 app.use('/api/students',studentRoutes(passport));
 app.use('/api/ratings',ratingRoutes(passport));
+app.use('/api/photos', photoRoutes(passport));
 module.exports = app;
