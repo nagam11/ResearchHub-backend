@@ -19,11 +19,11 @@ var rating   = new mongoose.Schema({
         required:true,
         unique:true
     },
-   /* Representative: {
+    Representative: {
         type:String,
         required:true,
         unique:true
-    }*/
+    }
   /*  company:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'companies',
