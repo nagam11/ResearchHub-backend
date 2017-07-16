@@ -7,6 +7,8 @@ var project   = new mongoose.Schema({
 
     createdOn : {type: Date,  "default": Date.now  },
     title: String,
+    ratingDes: String,
+    ratingFields: String,
     _projetType : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'projecttypes',
@@ -42,9 +44,8 @@ var project   = new mongoose.Schema({
         ref: 'skills'
         }],
     ratings: [{
-        company: String,
-        interestedFields:String,
-        overLapMessage: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'ratings'
     }]
 });
 project.index({title : 'text'});

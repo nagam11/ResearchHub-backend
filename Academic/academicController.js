@@ -58,8 +58,6 @@ exports.getAcademics = function(req,res){
             sendJSONresponse(res, 404, err);
             return;
         }
-
-
         console.log(academics);
         sendJSONresponse(res, 200, academics);
     });
@@ -79,6 +77,27 @@ exports.getAcademicById = function(req, res) {
     });
 };
 
+// Create endpoint /api/projects/:project_id for PUT
+exports.putAcademicbyId = function(req, res) {
+    // Use the Project model to find a specific movie and update it
+    console.log("updating academic by id");
+    Academic.findByIdAndUpdate(
+        req.params.academic_id,
+        req.body,
+        {
+            //pass the new object to cb function
+            new: true,
+            //run validations
+            runValidators: true
+        }, function (err, academic) {
+            if (err) {
+                res.status(400).send(err);
+                return;
+            }
+            console.log(req.params._id);
+            res.json(academic);
+        });
+};
 
 exports.createAcademic = function(req, res) {
     console.log("new academic : "+JSON.stringify(req.body));

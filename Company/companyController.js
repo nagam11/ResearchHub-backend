@@ -24,3 +24,17 @@ exports.getCompanies = function(req,res){
     });
 
 };
+exports.getCompany= function(req, res) {
+    // console.log('Body query: ', JSON.stringify(req.body));
+    // --Find project by ID and populate fields
+    Company.findById(req.params.company_id).exec(function(err, project) {
+        console.log('name: ', project);
+        if (err) {
+            res.status(400).send(err);
+            return;
+            console.error('error: ', err);
+        }
+        sendJSONresponse(res, 200, project);
+    });
+
+};
