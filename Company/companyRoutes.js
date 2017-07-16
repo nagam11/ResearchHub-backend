@@ -18,5 +18,7 @@ function companyRoutes(passport) {
 
     router.route('/').get(companyController.getCompanies);
 
+    router.route('/:company_id').get(companyController.getCompany);
+
     return router;
 }
