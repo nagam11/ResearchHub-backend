@@ -46,6 +46,10 @@ var project   = new mongoose.Schema({
     ratings: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'ratings'
+    }],
+    applications: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'students'
     }]
 });
 project.index({title : 'text'});

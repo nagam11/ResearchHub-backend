@@ -1,7 +1,7 @@
 /**
  * Created by Devgen on 20.06.2017.
  */
- var Config = require('../config/config.js');
+var Config = require('../config/config.js');
 var Academic = require('./academicSchema');
 var User = require('../user/userSchema');
 var jwt = require('jwt-simple');
