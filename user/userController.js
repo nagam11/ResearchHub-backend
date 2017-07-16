@@ -104,6 +104,16 @@ module.exports.update = function(req, res) {
         });
 }
 
+module.exports.addFavoritProect = function (req,res) {
+    
+}
+module.exports.getUserFavoritProjects = function (req,res) {
+    
+}
+module.exports.deleteFavoritProject = function (req,res) {
+    
+}
+
 function updateById(id, userParam) {
     var deferred = Q.defer();
 

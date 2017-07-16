@@ -25,6 +25,10 @@ var userSchema = mongoose.Schema({
         unique: true,
         required: true
     },
+    _favoritsprojects:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'projects'
+    }],
     password: {
         type: String,
         required: true
