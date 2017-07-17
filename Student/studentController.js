@@ -151,11 +151,8 @@ function updateById(id, studentParam) {
             { _id: id },
             { $set: set },
             function (err, student) {
-                if (err) {
-
-                deferred.reject(err.name + ': ' + err.message);
+                if (err) deferred.reject(err.name + ': ' + err.message);
                 deferred.resolve();
-                }
         });
     }
     return deferred.promise;
