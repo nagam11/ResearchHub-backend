@@ -3,6 +3,14 @@ var User = require('./userSchema');
 var jwt = require('jwt-simple');
 var Q = require('q');
 var _ = require('lodash');
+var Project = require('../project/projectSchema');
+
+
+
+var sendJSONresponse = function(res, status, content) {
+    res.status(status);
+    res.json(content);
+};
 
 module.exports.login = function(req, res){
     if(!req.body.email){
@@ -109,6 +117,30 @@ module.exports.addFavoritProect = function (req,res) {
     
 }
 module.exports.getUserFavoritProjects = function (req,res) {
+    console.log(JSON.stringify(req.params));
+     // .populate('_favoritsprojects',['title','description','_chair','_projetType'])
+    User.findById(req.params.id).exec(function (err, user) {
+        if (err) {
+            res.status(400).send(err);
+            return;
+            console.error('error: ', err);
+        }
+
+
+        Project.find({'_id' :{ $in: user._favoritsprojects } }).populate('_languages','language').populate('_requeredLevel','level').populate('_requeredSkills','skill').populate('ratings', ['InterestFields', 'Description', 'Representative']).populate('_partner','name').populate('_superadvisor',['firstname','lastname']).populate('_chair', 'name').populate('_projetType', 'protjectType').exec(function(err, projects) {
+            if (err) {
+                res.status(400).send(err);
+                return;
+                console.error('error: ', err);
+            }
+            console.log(JSON.stringify(projects));
+            sendJSONresponse(res, 200, projects);
+        });
+
+
+    });
+
+
     
 }
 module.exports.deleteFavoritProject = function (req,res) {

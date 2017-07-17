@@ -45,9 +45,6 @@ exports.searchForProjects = function(req, res) {
         query["_languages"] = { $in: req.body.selectedLaguages};
     }
     if(req.body.selectedProjectTypes.length > 0) {
-
-
-
         query["_projetType"] = { $in: req.body.selectedProjectTypes};
     }
 
@@ -74,7 +71,26 @@ exports.searchForProjects = function(req, res) {
         sendJSONresponse(res, 200, projects);
     }); */
 
-    Project.find( query ).populate('_chair', 'name').populate('_projetType', 'protjectType').populate('_requeredSkills','skill').populate('_advisor','username').exec(function(err, projects) {
+
+    Project.find( query ).
+    populate('_chair', 'name').
+    populate('_projetType', 'protjectType').
+    populate('_requeredSkills','skill').
+    populate('_advisor','username')
+    .exec(function(err, projects) {
+
+        // projects.rating = Object.keys(projects.ratings).length;
+
+      /*  for(var k = 0; k < projects.length; k++) {
+           // projects[k].skillsCount = aggregateSkillsOfprojct(projects[k]._id);
+           aggregateSkillsOfprojct(projects[k]._id, function (result) {
+               console.log('pr: ' + JSON.stringify(projects[k]));
+               projects[k].set('skillsCount1',result);
+               sendJSONresponse(res, 200, projects);
+           });
+
+
+        } */
         console.log('name: ', JSON.stringify(projects));
         if (err) {
             res.status(400).send(err);
@@ -82,7 +98,7 @@ exports.searchForProjects = function(req, res) {
             return;
 
         }
-        sendJSONresponse(res, 200, projects);
+         sendJSONresponse(res, 200, projects);
     });
 
     /*Project.find( {$or: [
@@ -105,3 +121,23 @@ exports.searchForProjects = function(req, res) {
 
 
 };
+
+function aggregateSkillsOfprojct(projectid, func) {
+    console.log('agregate for project id: + '+projectid);
+    Project.aggregate([
+        {$match: {
+            _id: projectid
+        }},
+        {$unwind: "$ratings"},
+
+        {
+            $group: { _id:  'ratingId', count: {$sum: 1 }}
+        }
+
+    ],function( lookupErr, lookupData ){
+        console.log('result aggregate: ' +JSON.stringify(lookupData) + lookupErr);
+        // return lookupData[0];
+        func(lookupData);
+    });
+
+}
