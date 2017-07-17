@@ -95,6 +95,7 @@ function getById(id) {
 }
 
 module.exports.update = function(req, res) {
+    console.log('got the request:');
     updateById(req.params.id, req.body)
         .then(function () {
             res.sendStatus(200);
@@ -142,6 +143,7 @@ function updateById(id, userParam) {
 
     function updateUser() {
         // fields to update
+        console.log(JSON.stringify(userParam));
         var set = {
             'firstname': userParam.firstname,
             'lastname': userParam.lastname,
@@ -154,6 +156,7 @@ function updateById(id, userParam) {
             'major': userParam.major,
             'minor': userParam.minor,
             'graduation': userParam.graduation,
+            '_favoritsprojects': userParam._favoritsprojects,
             'cv': 'blob'
         };
 
