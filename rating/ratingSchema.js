@@ -11,18 +11,18 @@ var rating   = new mongoose.Schema({
     //_id: Number,
     InterestFields: {
         type:String,
-        required:true,
-        unique:true
+        required:true
+      //  unique:true
     },
     Description: {
         type: String,
-        required:true,
-        unique:true
+        required:true
+     //   unique:true
     },
     Representative: {
         type:String,
-        required:true,
-        unique:true
+        required:true
+      //  unique:true
     }
   /*  company:{
         type: mongoose.Schema.Types.ObjectId,
