@@ -8,19 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/sebischair/sebamaster-movie-backend"
+    "url": "git+https://github.com/nagam11/ResearchHub-backend"
   },
   "keywords": [
     "researchhub",
     "seba",
     "master"
   ],
-  "author": "Narazani",
+  "author": "ResearchHub",
   "license": "ISC",
   "bugs": {
-    "url": "https://bitbucket.org/sebischair/sebamaster-movie-backend"
+    "url": "not-available"
   },
-  "homepage": "https://bitbucket.org/sebischair/sebamaster-movie-backend#readme",
+  "homepage": "https://github.com/nagam11/ResearchHub-backend#readme",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.0",
